@@ -9,4 +9,5 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '_empty_'
 
 
+admin.site.register(models.Category)
 admin.site.register(models.Post, PostAdmin)

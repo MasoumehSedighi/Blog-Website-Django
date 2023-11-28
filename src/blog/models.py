@@ -30,4 +30,19 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    @classmethod
+    def get_next_post(cls, current_id):
+        try:
+            return cls.objects.filter(status=True, id__gt=(current_id)).order_by("id")[0]
+        except:
+            return None
+
+
+    @classmethod
+    def get_previous_post(cls, current_id):
+        try:
+            return cls.objects.filter(status=True, id__lt=(current_id)).order_by("-id")[0]
+        except:
+            return None
 

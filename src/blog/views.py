@@ -12,7 +12,11 @@ def blog_home_view(request):
 
 def blog_single_view(request, pid):
     post = get_object_or_404(models.Post, pk=pid, status=True)
+    next_post = models.Post.get_next_post(current_id=pid)
+    previous_post = models.Post.get_previous_post(current_id=pid)
     context = {
-        'post': post
+        'post': post,
+        'next_post': next_post,
+        'previous_post': previous_post
     }
     return render(request, 'blog/blog-single.html', context)

@@ -94,7 +94,7 @@
 							<div class="col-lg-3  col-md-3 meta-details">
 								<ul class="tags">
 									{% for cat in post.category.all %}
-									<li><a href="#">{{cat.name}}</a></li>
+									<li><a href="{% url 'blog:blog-category' cat_name=cat.name %}">{{cat.name}}</a></li>
 									{% if not forloop.last %}{{","}} {% endif %}
 									{% endfor %}
 								</ul>
@@ -147,11 +147,11 @@
 
 						{% include 'blog/sidebar/user-info.html' %}
 
-						{% latestposts %}
+						{% latestposts 4 %}
 
 						{% include 'blog/sidebar/ads.html' %}
 
-						{% include 'blog/sidebar/category.html' %}
+						{% postcategories %}
 
 						{% include 'blog/sidebar/newsletter.html' %}
 

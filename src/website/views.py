@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import ContactForm
 
 # Create your views here.
 
@@ -12,6 +13,17 @@ def about_view(request):
 
 
 def contact_view(request):
+    """
+    Handle the submission of the contact form.
+    """
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            return redirect('website:contact')
+    else:
+        form = ContactForm()
     return render(request, 'website/contact.html')
 
 

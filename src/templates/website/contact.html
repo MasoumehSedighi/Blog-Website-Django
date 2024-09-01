@@ -64,7 +64,7 @@
 
 								<input name="email" id="id_email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email" value="{{ email}}">
 
-								<input name="subject" id="id_subject" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" class="common-input mb-20 form-control" required="" type="text" value="{{subject}}">
+								<input name="subject" id="id_subject" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" class="common-input mb-20 form-control" type="text" value="{{subject}}">
 							</div>
 							<div class="col-lg-6 form-group">
 								<textarea name="message" id="id_message" class="common-textarea form-control"  placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required="" value="{{message}}"></textarea>
@@ -75,6 +75,16 @@
 							</div>
 						</div>
 					</form>
+					<br>
+					{% if messages %}
+						<div class="col-6 messages">
+							{% for message in messages %}
+								<div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+									{{message}}
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>

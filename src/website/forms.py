@@ -7,6 +7,11 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = '__all__'
 
+    def clean(self):
+        data = self.cleaned_data
+        data['name'] = 'Anonymous'
+        return data
+
 class NewsletterForm(forms.ModelForm):
 
     class Meta:

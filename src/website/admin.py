@@ -8,3 +8,4 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = ('message', 'subject')
 
 admin.site.register(models.Contact, ContactAdmin)
+admin.site.register(models.Newsletter)

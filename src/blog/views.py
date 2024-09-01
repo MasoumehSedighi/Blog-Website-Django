@@ -34,3 +34,13 @@ def blog_single_view(request, pid):
         'previous_post': previous_post
     }
     return render(request, 'blog/blog-single.html', context)
+
+def blog_search_view(request):
+    posts = models.Post.objects.filter(status=True)
+    if request.method == 'GET':
+        if request.GET.get('search'):
+            search = request.GET.get('search')
+            posts = posts.filter(content__contains=search)
+
+    context = {'posts':posts}
+    return render(request,'blog/blog-home.html',context)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 
@@ -58,3 +59,7 @@ class Post(models.Model):
             return cls.objects.filter(status=True, id__lt=(current_id)).order_by("-id")[0]
         except:
             return None
+
+
+    def get_absolute_url(self):
+        return reverse('blog:blog-single', kwargs={'pid':self.id})
